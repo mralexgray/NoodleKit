@@ -114,7 +114,7 @@ static char cleanupGlueKey;
 	}
 	
 	key = [NSString stringWithFormat:@"%p", glue];
-	[glueTable setObject:glue forKey:key];
+	glueTable[key] = glue;
 	
 	[glue release];
 	
@@ -131,7 +131,7 @@ static char cleanupGlueKey;
 	{
 		NoodleGlue		*glue;
 		
-		glue = [glueTable objectForKey:identifier];
+		glue = glueTable[identifier];
 		
 		// Clear the cleanup block since we don't want it to be invoked when it gets released when it's removed
 		// from the table

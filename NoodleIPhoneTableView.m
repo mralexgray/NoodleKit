@@ -107,14 +107,9 @@
 		[textShadow setShadowColor:[NSColor colorWithCalibratedWhite:0.5 alpha:1.0]];
 		[textShadow setShadowBlurRadius:0.0];
 		
-		attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-													 [NSFont fontWithName:@"Helvetica-Bold" size:16.0],
-													 NSFontAttributeName,
-													 textShadow,
-													 NSShadowAttributeName,
-													 [NSColor whiteColor],
-													 NSForegroundColorAttributeName,
-													 nil];
+		attributes = @{NSFontAttributeName: [NSFont fontWithName:@"Helvetica-Bold" size:16.0],
+													 NSShadowAttributeName: textShadow,
+													 NSForegroundColorAttributeName: [NSColor whiteColor]};
 		[textShadow release];
 		
 		count = [self numberOfColumns];

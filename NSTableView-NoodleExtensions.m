@@ -161,7 +161,7 @@ void NoodleClearRect(NSRect rect)
 	for (colIndex = 0; colIndex < count; colIndex++)
 	{
 		if ((delegate == nil) ||
-			[delegate tableView:self shouldDisplayCellInStickyRowHeaderForTableColumn:[[self tableColumns] objectAtIndex:colIndex] row:row])
+			[delegate tableView:self shouldDisplayCellInStickyRowHeaderForTableColumn:[self tableColumns][colIndex] row:row])
 		{
 			cell = [self preparedCellAtColumn:colIndex row:row];
 			cellRect = [self frameOfCellAtColumn:colIndex row:row];
@@ -385,7 +385,7 @@ void NoodleClearRect(NSRect rect)
 	
 	dataSource = [self dataSource];
 	
-	column = [[self tableColumns] objectAtIndex:columnIndex];
+	column = [self tableColumns][columnIndex];
 	
 	if ([column isRowSpanningEnabled])
 	{
