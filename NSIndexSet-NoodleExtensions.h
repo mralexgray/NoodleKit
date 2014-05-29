@@ -30,20 +30,17 @@
 
 @interface NoodleIndexSetEnumerator : NSObject
 {
-	NSUInteger	*_indexes;
-	NSUInteger	_count;
-	NSUInteger	_currentIndex;
+	NSUInteger * _indexes;
+  NSUInteger	 _count,
+               _currentIndex;
 }
 
-// Returns NSNotFound when there are no more indexes.
-- (NSUInteger)nextIndex;
+@property (readonly) NSUInteger nextIndex; // Returns NSNotFound when there are no more indexes.
 
 @end
-
 
 @interface NSIndexSet (NoodleExtensions)
 
-- (NoodleIndexSetEnumerator *)indexEnumerator;
+@property (readonly) NoodleIndexSetEnumerator *indexEnumerator;
 
 @end
-
