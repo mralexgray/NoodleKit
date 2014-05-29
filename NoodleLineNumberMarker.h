@@ -29,21 +29,15 @@
 
 #import <Cocoa/Cocoa.h>
 
-/*
- Marker for NoodleLineNumberView.
- 
- For more details, see the related blog post at:  http://www.noodlesoft.com/blog/2008/10/05/displaying-line-numbers-with-nstextview/
+/*! Marker for NoodleLineNumberView.
+    For more details, see the related blog post at:  http://www.noodlesoft.com/blog/2008/10/05/displaying-line-numbers-with-nstextview/
  */
 
 @interface NoodleLineNumberMarker : NSRulerMarker
-{
-	NSUInteger		_lineNumber;
-}
 
-- (id)initWithRulerView:(NSRulerView *)aRulerView lineNumber:(CGFloat)line image:(NSImage *)anImage imageOrigin:(NSPoint)imageOrigin;
+- (id) initWithRulerView:(NSRulerView*)rv lineNumber:(CGFloat)l
+                   image:(NSImage*)i     imageOrigin:(NSPoint)io;
 
-- (void)setLineNumber:(NSUInteger)line;
-- (NSUInteger)lineNumber;
-
+@property NSUInteger lineNumber;
 
 @end
