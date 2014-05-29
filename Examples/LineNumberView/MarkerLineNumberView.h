@@ -9,8 +9,5 @@
 #import "NoodleLineNumberView.h"
 
 @interface MarkerLineNumberView : NoodleLineNumberView
-{
-	NSImage				*markerImage;
-}
 
 @end
