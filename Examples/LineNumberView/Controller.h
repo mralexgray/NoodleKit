@@ -27,15 +27,13 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import <Cocoa/Cocoa.h>
-
-@class NoodleLineNumberView;
+#import <NoodleKit/NoodleKit.h>
 
 @interface Controller : NSObject
 {
-    IBOutlet NSScrollView   *scrollView;
-    IBOutlet NSTextView     *scriptView;
-	NoodleLineNumberView	*lineNumberView;
+  IBOutlet NSScrollView * scrollView;
+  IBOutlet   NSTextView * scriptView;
+	 NoodleLineNumberView	* lineNumberView;
 }
 
 @end
