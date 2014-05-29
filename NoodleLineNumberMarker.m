@@ -7,74 +7,36 @@
 
 #import "NoodleLineNumberMarker.h"
 
+#define NOODLE_LINE_CODING_KEY		@"line"
 
 @implementation NoodleLineNumberMarker
 
-- (id)initWithRulerView:(NSRulerView *)aRulerView lineNumber:(CGFloat)line image:(NSImage *)anImage imageOrigin:(NSPoint)imageOrigin
-{
-	if ((self = [super initWithRulerView:aRulerView markerLocation:0.0 image:anImage imageOrigin:imageOrigin]) != nil)
-	{
-		_lineNumber = line;
-	}
-	return self;
-}
+- (id) initWithRulerView:(NSRulerView*)rv lineNumber:(CGFloat)l image:(NSImage*)i imageOrigin:(NSPoint)iO {
 
-- (void)setLineNumber:(NSUInteger)line
-{
-	_lineNumber = line;
-}
-
-- (NSUInteger)lineNumber
-{
-	return _lineNumber;
+	return self = [super initWithRulerView:rv markerLocation:0 image:i imageOrigin:iO] ? _lineNumber = l, self : nil;
 }
 
 #pragma mark NSCoding methods
 
-#define NOODLE_LINE_CODING_KEY		@"line"
+- (id) initWithCoder:(NSCoder*)decoder { return self = [super initWithCoder:decoder] ?
 
-- (id)initWithCoder:(NSCoder *)decoder
-{
-	if ((self = [super initWithCoder:decoder]) != nil)
-	{
-		if ([decoder allowsKeyedCoding])
-		{
-			_lineNumber = [[decoder decodeObjectForKey:NOODLE_LINE_CODING_KEY] unsignedIntegerValue];
-		}
-		else
-		{
-			_lineNumber = [[decoder decodeObject] unsignedIntegerValue];
-		}
-	}
-	return self;
+    _lineNumber = [decoder allowsKeyedCoding]
+                ? [decoder decodeIntegerForKey:NOODLE_LINE_CODING_KEY]
+                : [decoder.decodeObject unsignedIntegerValue], self : nil;
 }
 
-- (void)encodeWithCoder:(NSCoder *)encoder
-{
-	[super encodeWithCoder:encoder];
-	
-	if ([encoder allowsKeyedCoding])
-	{
-		[encoder encodeObject:@(_lineNumber) forKey:NOODLE_LINE_CODING_KEY];
-	}
-	else
-	{
-		[encoder encodeObject:@(_lineNumber)];
-	}
-}
+- (void)encodeWithCoder:(NSCoder *)encoder {	[super encodeWithCoder:encoder];
 
+  [encoder allowsKeyedCoding] ? [encoder encodeInteger:_lineNumber forKey:NOODLE_LINE_CODING_KEY]
+                              : [encoder encodeObject:@(_lineNumber)];
+
+}
 
 #pragma mark NSCopying methods
 
-- (id)copyWithZone:(NSZone *)zone
-{
-	id		copy;
-	
-	copy = [super copyWithZone:zone];
-	[copy setLineNumber:_lineNumber];
-	
-	return copy;
-}
+- (id) copyWithZone:(NSZone *)z { id new = [super copyWithZone:z];
 
+  [new setLineNumber:_lineNumber]; return new;
+}
 
 @end
